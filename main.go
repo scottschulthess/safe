@@ -352,7 +352,6 @@ func main() {
 			if err != nil {
 				return err
 			}
-			fmt.Printf("--- # %s\n", path)
 			//Don't show key if specific key was requested
 			if _, key := vault.ParsePath(path); key != "" {
 				value, err := s.SingleValue()
@@ -361,9 +360,9 @@ func main() {
 				}
 				fmt.Println(value)
 			} else {
-				fmt.Println(s.YAML())
+				fmt.Printf("--- # %s\n", path)
+				fmt.Println(s.YAML() + "\n")
 			}
-			fmt.Println()
 		}
 		return nil
 	}, "read", "cat")
